@@ -1,4 +1,4 @@
-package model;
+package com.mohamed.tictactoe.model;
 
 public class Player {
 
