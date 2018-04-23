@@ -9,16 +9,19 @@ public class AIPlayerServiceEasyImpl implements AIPlayerService {
         Character[][] cells = board.getCells();
         for (int i = 0; i < board.getSize(); i++) {
             for (int j = 0; j < board.getSize(); j++) {
-                if (cells[i][j] != '-') {
-                    possibleMovesMatrix[i][j] = -100;
-                    continue;
-                }
-                int rowScore = countScoreForArray(cells[i], symbol);
-                int columnScore = getColumnScore(cells, j, symbol);
-                possibleMovesMatrix[i][j] = rowScore + columnScore;
+                possibleMovesMatrix[i][j] = getCellScore(cells,i,j,symbol);
             }
         }
         placeMarkInHighestScoreCell(possibleMovesMatrix, board, symbol);
+    }
+
+    public int getCellScore(Character[][] cells, int row, int column, Character symbol){
+        if (cells[row][column] != '-') {
+            return -100;
+        }
+        int rowScore = countScoreForArray(cells[row], symbol);
+        int columnScore = getColumnScore(cells, column, symbol);
+        return rowScore + columnScore;
     }
 
     @Override

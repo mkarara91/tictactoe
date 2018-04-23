@@ -94,4 +94,29 @@ public class AIPlayerServiceEasyImplTest {
         Assert.assertEquals(symbol, board.getCells()[1][1]);
     }
 
+    @Test
+    public void getCellScoreShouldReturnNegative100IfCellOccupied(){
+        //given
+        Board board = new Board(3);
+        Character symbol = 'x';
+        board.getCells()[0][0] = 'x';
+        //when
+        int result = aiPlayerService.getCellScore(board.getCells(),0,0,symbol);
+        //verify
+        Assert.assertEquals(-100, result);
+    }
+
+    @Test
+    public void PlaceAIMarkshouldPlaceMarkBottomRightOnEmptyBoard(){
+        //given
+        Board board = new Board(3);
+        Character symbol = 'x';
+        //when
+        aiPlayerService.placeAIMark(board,symbol);
+        //verify
+        Assert.assertEquals(symbol, board.getCells()[2][2]);
+    }
+
+
+
 }
