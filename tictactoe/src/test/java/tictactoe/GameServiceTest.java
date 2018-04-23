@@ -1,9 +1,6 @@
 package tictactoe;
 
-import com.mohamed.tictactoe.model.Board;
-import com.mohamed.tictactoe.model.Game;
-import com.mohamed.tictactoe.model.Player;
-import com.mohamed.tictactoe.model.PlayerType;
+import com.mohamed.tictactoe.model.*;
 import com.mohamed.tictactoe.service.GameService;
 import com.mohamed.tictactoe.service.GameServiceImpl;
 import org.junit.Assert;
@@ -138,10 +135,10 @@ public class GameServiceTest {
     }
 
     @Test
-    public void changeCurrnetPlayerShouldchangeToNextPlayer(){
+    public void changeCurrnetPlayerShouldchangeToNextPlayer() {
         //given
         Board board = new Board(3);
-        Game game = new Game(players,board);
+        Game game = new Game(players, board, Difficulty.Easy);
         //when
         gameService.changePlayerTurn(game);
         //verify
@@ -149,10 +146,10 @@ public class GameServiceTest {
     }
 
     @Test
-    public void changeCurrentPlayerShouldStartAgainFromFirstPlayer(){
+    public void changeCurrentPlayerShouldStartAgainFromFirstPlayer() {
         //given
         Board board = new Board(3);
-        Game game = new Game(players,board);
+        Game game = new Game(players, board, Difficulty.Easy);
         //when
         gameService.changePlayerTurn(game);
         gameService.changePlayerTurn(game);

@@ -106,4 +106,9 @@ public class GameServiceImpl implements GameService {
         game.setCurrentPlayer(game.getPlayers().get(currentPlayerNum-1));
     }
 
+    @Override
+    public boolean checkInputsOutOfBounds(int row, int column, int boardSize) {
+        return row > boardSize || row < 0 || column > boardSize || column < 0;
+    }
+
 }

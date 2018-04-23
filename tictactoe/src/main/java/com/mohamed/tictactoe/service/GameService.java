@@ -22,5 +22,7 @@ public interface GameService {
 
     void changePlayerTurn(Game game);
 
+    boolean checkInputsOutOfBounds(int row, int column, int boardSize);
+
 
 }
