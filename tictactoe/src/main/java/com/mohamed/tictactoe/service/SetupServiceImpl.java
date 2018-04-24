@@ -17,7 +17,7 @@ public class SetupServiceImpl implements SetupService {
     public Game setupGame() {
         ResourceBundle rb = ResourceBundle.getBundle(SETTINGS_FILE);
         Difficulty difficulty =  Difficulty.valueOf(rb.getString(DIFFICULTY));
-        Board board = setupBoardSize(Integer.parseInt(rb.getString(BOARD_SIZE)));
+        Board board = setupBoardSize(rb);
         List<Player> players = getPlayers(rb);
         Game game = new Game(players, board, difficulty);
         chooseStartingPlayer(game);
@@ -43,7 +43,13 @@ public class SetupServiceImpl implements SetupService {
         return new ArrayList<>(Arrays.asList(player1, player2, playerAI));
     }
 
-    private Board setupBoardSize(int size){
+    private Board setupBoardSize(ResourceBundle rb){
+        int size = 3;
+        try{
+            size = Integer.parseInt(rb.getString(BOARD_SIZE));
+        }catch(NumberFormatException ex){
+            System.out.println("Error in Configuration file, board-size should be an integer, default value 3 used.");
+        }
         if(size < 3){
             System.out.println("Board size changed to 3 please set the board size accordingly");
             size = 3;
